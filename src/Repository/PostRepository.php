@@ -39,20 +39,29 @@ class PostRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Post[] Returns an array of Post objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Post[] Returns an array of Post objects
+    */
+   public function findByTitle($title): array
+   {
+       $qb = $this->createQueryBuilder('p');
+        //    ->andWhere('p.title like :keyword')
+        return $qb->andWhere($qb->expr()->like('p.title', ':keyword'))
+           ->setParameter('keyword', '%' . $title . '%')
+           ->orderBy('p.id', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
+   public function findByTitleDQL(string $keyword): array
+   {
+        return $this->_em->createQuery("select p from App\Entity\Post p where p.title like :keyword")
+            ->setParameter("keyword", '%' . $keyword . '%')
+            ->setMaxResults(10)
+            ->getResult();
+   }
 
 //    public function findOneBySomeField($value): ?Post
 //    {
