@@ -17,8 +17,6 @@ class PostFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
         for ($i = 0; $i < 5; $i++) { 
             $post = $this->postFactory->create('Fake post title ' . $i, 'Fake post body' . $i);
             if ($i%2 == 0) {
@@ -27,5 +25,6 @@ class PostFixtures extends Fixture
             $manager->persist($post);
         }
         $manager->flush();
+        echo "load data\n";
     }
 }

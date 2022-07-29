@@ -54,6 +54,11 @@ class Post
      */
     private $summary;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $post_image;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -162,6 +167,18 @@ class Post
     public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
+
+        return $this;
+    }
+
+    public function getPostImage(): ?string
+    {
+        return $this->post_image;
+    }
+
+    public function setPostImage(string $post_image): self
+    {
+        $this->post_image = $post_image;
 
         return $this;
     }
