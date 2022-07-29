@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class PostCrudController extends AbstractCrudController
 {
@@ -32,10 +33,15 @@ class PostCrudController extends AbstractCrudController
                     'published' => 2
                 ]),
             TimeField::new('created_at')->setFormat('Y-MM-dd HH:mm:ss'),
-            TimeField::new('updated_at')->setFormat('Y-MM-dd HH:mm:ss'),
+            // TimeField::new('updated_at')->setFormat('Y-MM-dd HH:mm:ss'),
             ImageField::new('post_image')
                 ->setBasePath('uploads/images')     // 显示时使用
                 ->setUploadDir('public/uploads/images') // 上传时使用
         ];
+    }
+
+    public function configureCurl(Crud $crud): Crud
+    {
+        return $crud->setDefaultSort(['id' => 'DESC']);
     }
 }
