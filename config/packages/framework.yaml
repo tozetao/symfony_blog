@@ -17,6 +17,7 @@ framework:
     php_errors:
         log: true
 
+    # 配置资源包
     assets:
         packages:
             file_upload:

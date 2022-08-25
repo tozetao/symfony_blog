@@ -38,10 +38,11 @@ class PostController extends AbstractController
 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             if ($commentForm->get('submit')->isClicked()) {
-                /**@var Comment $data **/
-                $data = $commentForm->getData();
-                $data->setPost($post);
-                $entityManager->persist($data);
+                /**@var Comment $comment **/
+                $comment = $commentForm->getData();
+                $comment->setPost($post);
+                $comment->setCreatedAt(new \DateTime());
+                $entityManager->persist($comment);
                 $entityManager->flush();
             }
         }

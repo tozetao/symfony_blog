@@ -19,6 +19,7 @@ class PostFactory
 		}
 		$post->setStatus($status);
 		$post->setCreatedAt(new DateTime());
+        $post->setPostImage('');
 		return $post;
 	}
 }

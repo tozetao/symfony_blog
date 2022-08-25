@@ -14,4 +14,7 @@ class IndexPageTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Post index');
     }
+
+    // php bin/console make:test
+    // WebTestCase
 }

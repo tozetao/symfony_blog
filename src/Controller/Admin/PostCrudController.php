@@ -31,7 +31,7 @@ class PostCrudController extends AbstractCrudController
 
             TextField::new('title'),
             ImageField::new('post_image')
-                ->setBasePath($this->getParameter('base_path'))                 // 显示时使用
+                ->setBasePath($this->getParameter('base_path'))    // 显示时使用
                 ->setUploadDir($this->getParameter('upload_dir')), // 上传时使用
             TextareaField::new('summary'),
             TextEditorField::new('body'),
