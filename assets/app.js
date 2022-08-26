@@ -11,6 +11,35 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
+import $ from 'jquery'
+
 import 'bootstrap'
 
-import $ from 'jquery'
+const routes = require('../public/js/fos_js_routes.json');
+import Routing from '../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+
+Routing.setRoutingData(routes);
+
+const Url = {
+    prefix: function(url) {
+        return '/symfony_blog/public/index.php' + url
+    }
+}
+
+$(document).ready(function() {
+    $('button.js-replay-comment-btn').on('click', function(element) {
+        let postId = $(this).data('post-id');
+        let parentCommentId = $(this).data('parent-id')
+        let url = Routing.generate('reply_comment', {post_id: postId, comment_id: parentCommentId})
+        console.log(Url.prefix(url))
+        // url =  + url
+        $.ajax({
+            url: Url.prefix(url),
+            type: 'POST'
+        }).done(function(response) {
+            $(element.target).after(response)
+        }).fail(function(jqXHR) {
+
+        })
+    })
+})

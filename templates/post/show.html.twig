@@ -57,7 +57,7 @@
         <div class="media-body">
             <h5 class="mt-0">{{ comment.author }}</h5>
             {{ comment.content }}
-            <button class="btn btn-sm btn-link js-replay-comment-btn"></button>
+            <button class="btn btn-sm btn-link js-replay-comment-btn" data-post-id="{{ post.id }}" data-parent-id="{{ comment.id }}">回复</button>
         </div>
     </div>
     {% endfor %}
@@ -86,7 +86,7 @@
             </div>
         </div>
     </div>
-     -->
+-->
 
 {#    <h1>Post</h1>#}
 
