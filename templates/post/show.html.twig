@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
-
+{% import 'macro.html.twig' as macros %}
 {% block title %}Show Post{% endblock %}
 
 {% block content %}
-
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert-{{ label }} mt-4 alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
     <!-- Title -->
     <h1 class="mt-4">{{ post.title }}</h1>
 
@@ -51,16 +57,13 @@
     </div>
 
     <!-- Single Comment -->
-    {% for comment in post.comments %}
-    <div class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-        <div class="media-body">
-            <h5 class="mt-0">{{ comment.author }}</h5>
-            {{ comment.content }}
-            <button class="btn btn-sm btn-link js-replay-comment-btn" data-post-id="{{ post.id }}" data-parent-id="{{ comment.id }}">回复</button>
-        </div>
-    </div>
+    {% for comment in pagination %}
+        {{ macros.show_comments(comment, post) }}
     {% endfor %}
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
     <!-- Comment with nested comments
     <div class="media mb-4">

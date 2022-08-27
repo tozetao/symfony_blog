@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
+    const Published = 2;
+    const Draft = 1;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

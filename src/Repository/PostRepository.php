@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -62,6 +63,19 @@ class PostRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getResult();
    }
+
+    public function getPostPaginator(int $status, int $offset, int $limit): Paginator
+    {
+        $query = $this->createQueryBuilder('p')
+            ->andWhere('p.status = :status')
+            ->setParameter('status', $status)
+            ->orderBy('p.id', 'desc')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery();
+
+        return new Paginator($query);
+    }
 
 //    public function findOneBySomeField($value): ?Post
 //    {

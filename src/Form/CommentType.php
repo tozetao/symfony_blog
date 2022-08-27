@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\Comment;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,6 +32,10 @@ class CommentType extends AbstractType
                 'required' => true,
             ])
             ->add('content')
+            ->add('files', CollectionType::class, [
+                'entry_type' => FileType::class,
+                'allow_add' => true,
+            ])
             ->add('email', EmailType::class, [
                 'row_attr' => [
                     'class' => 'form-inline'

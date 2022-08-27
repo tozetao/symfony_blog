@@ -31,15 +31,21 @@ $(document).ready(function() {
         let postId = $(this).data('post-id');
         let parentCommentId = $(this).data('parent-id')
         let url = Routing.generate('reply_comment', {post_id: postId, comment_id: parentCommentId})
-        console.log(Url.prefix(url))
-        // url =  + url
-        $.ajax({
-            url: Url.prefix(url),
-            type: 'POST'
-        }).done(function(response) {
-            $(element.target).after(response)
-        }).fail(function(jqXHR) {
 
-        })
+        if ($(this).nextAll('p.max-level-info').length === 1) {
+            return;
+        }
+
+        if ($(this).nextAll('div.reply-comment-card').length === 0) {
+            // url =  + url
+            $.ajax({
+                url: Url.prefix(url),
+                type: 'POST'
+            }).done(function(response) {
+                $(element.target).after(response)
+            }).fail(function(jqXHR) {
+
+            })
+        }
     })
 })

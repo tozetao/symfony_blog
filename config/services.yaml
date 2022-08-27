@@ -6,6 +6,8 @@
 parameters:
     base_path: 'uploads/images/'
     upload_dir: 'public/%base_path%'
+    page_limit: 5
+    locale: 'zh_CN'
 
 services:
     # default configuration for services in *this* file

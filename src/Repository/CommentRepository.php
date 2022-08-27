@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Comment;
+use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,15 @@ class CommentRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getPaginatorQuery(Post $post): \Doctrine\ORM\Query
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.post = :post')
+            ->setParameter('post', $post)
+            ->orderBy('c.id', 'DESC')
+            ->getQuery();
     }
 
 //    /**
