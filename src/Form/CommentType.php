@@ -34,7 +34,13 @@ class CommentType extends AbstractType
             ->add('content')
             ->add('files', CollectionType::class, [
                 'entry_type' => FileType::class,
+                'entry_options' => [
+                    'label' => false
+                ],
                 'allow_add' => true,
+                'attr' => [
+                    'class' => 'input-row-wrapper'
+                ]
             ])
             ->add('email', EmailType::class, [
                 'row_attr' => [

@@ -27,6 +27,19 @@ const Url = {
 }
 
 $(document).ready(function() {
+    $('button.js-add-file-row-btn').on('click', function (element) {
+        var fileInputWrapper = $(element.target).closest('fieldset.form-group').find('div.input-row-wrapper')
+        // 获取当前input行计数
+        var inputCount = fileInputWrapper.children().length
+        // 获取input prototype并进行序号修改
+        var inputCode = fileInputWrapper.data('prototype')
+        console.log(inputCount)
+        console.log(inputCode)
+        inputCode = inputCode.replace(/__name__/g, inputCount)
+        fileInputWrapper.append(inputCode)
+    })
+
+    // 回复评论
     $('button.js-replay-comment-btn').on('click', function(element) {
         let postId = $(this).data('post-id');
         let parentCommentId = $(this).data('parent-id')

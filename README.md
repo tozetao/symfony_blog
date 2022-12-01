@@ -37,7 +37,11 @@ symfony是有缓存的，当你在/config目录下面新增了一个文件时，
 
   清除缓存。
 
-https://space.bilibili.com/452133624/channel/seriesdetail?sid=355222&ctype=0
+
+
+视频列表：https://space.bilibili.com/452133624/channel/seriesdetail?sid=355222&ctype=0
+
+进度：58节
 
 
 
