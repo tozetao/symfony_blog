@@ -27,14 +27,13 @@ const Url = {
 }
 
 $(document).ready(function() {
+    // 点击上传事件
     $('button.js-add-file-row-btn').on('click', function (element) {
         var fileInputWrapper = $(element.target).closest('fieldset.form-group').find('div.input-row-wrapper')
         // 获取当前input行计数
         var inputCount = fileInputWrapper.children().length
         // 获取input prototype并进行序号修改
         var inputCode = fileInputWrapper.data('prototype')
-        console.log(inputCount)
-        console.log(inputCode)
         inputCode = inputCode.replace(/__name__/g, inputCount)
         fileInputWrapper.append(inputCode)
     })
@@ -61,4 +60,13 @@ $(document).ready(function() {
             })
         }
     })
+
+    // 修复上传文件没反应
+    window.fixFileInputName = function(element) {
+        console.log('fixFileInputName')
+        let filename = $(element).val().split('\\').pop();
+        $(element).next('.custom-file-label').html(filename);
+    }
+
+    console.log(window.fixFileInputName)
 })

@@ -35,7 +35,10 @@ class CommentType extends AbstractType
             ->add('files', CollectionType::class, [
                 'entry_type' => FileType::class,
                 'entry_options' => [
-                    'label' => false
+                    'label' => false,
+                    'attr' => [
+                        'onchange' => 'fixFileInputName(this)'
+                    ]
                 ],
                 'allow_add' => true,
                 'attr' => [
